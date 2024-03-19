@@ -3,7 +3,9 @@ const app = express();
 // const cors = require('cors');
 const { default: mongoose } = require('mongoose');
 require('dotenv').config()
-const userRoute = require("./routes/userRoute")
+const userRoute = require("./routes/userRoute");
+const errorHandler = require('./middleware/errorMiddleware');
+
 
 // Mongo DB Connections
 mongoose.connect(process.env.MONGO_DB_URL, {
@@ -34,6 +36,9 @@ app.use("/api/users", userRoute);
 app.get("/", (req, res) => {
     res.send("Home Page");
 })
+
+//error middleware
+app.use(errorHandler);
 
 
 // Connection
