@@ -11,7 +11,7 @@ const {
   changePassword,
   forgotPassword,
 } = require("../controller/userController");
-const protect = -require("../middleware/authMiddleware");
+const protect = require("../middleware/authMiddleware");
 
 // Create a new userRoute
 router.post("/register", registerUser);

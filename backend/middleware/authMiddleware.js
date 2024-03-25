@@ -27,3 +27,5 @@ const protect = asyncHandler(async (req, res, next) => {
     throw new Error("Not");
   }
 });
+
+module.exports = protect;
