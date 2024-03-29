@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 
-const userSchema = new mongoose.Schema(
+const userSchema = mongoose.Schema(
   {
     name: {
       type: String,
@@ -13,15 +13,15 @@ const userSchema = new mongoose.Schema(
       unique: true,
       trim: true,
       match: [
-        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-        "Please enter a valid email",
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+        "Please enter a valid emaial",
       ],
     },
     password: {
       type: String,
       required: [true, "Please add a password"],
       minLength: [6, "Password must be up to 6 characters"],
-      //maxLength: [23, "Password must not be more than 23 characters"]
+      //   maxLength: [23, "Password must not be more than 23 characters"],
     },
     photo: {
       type: String,
@@ -30,31 +30,36 @@ const userSchema = new mongoose.Schema(
     },
     phone: {
       type: String,
-      default: +"91",
+      default: "+91",
     },
     bio: {
       type: String,
+      maxLength: [250, "Bio must not be more than 250 characters"],
       default: "bio",
-      maxLength: [250, "Bio must not be greater than 250 characters"],
+    },
+    role: {
+      type: String,
+      enum: ["USER", "ADMIN"],
+      default: "USER",
     },
   },
   {
     timestamps: true,
   }
 );
-// Encrypt password before ssaving to db
+
+//   Encrypt password before saving to DB
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {
     return next();
   }
 
-  //Hash password
-  const salt = await bcrypt.gensalt(10);
-  const hashedpassword = await bcrypt.hash(thispassword, salt);
-  this.password = hashedpassword;
+  // Hash password
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(this.password, salt);
+  this.password = hashedPassword;
   next();
 });
 
 const User = mongoose.model("User", userSchema);
-
 module.exports = User;
