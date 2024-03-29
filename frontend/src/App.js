@@ -20,6 +20,8 @@ import EditProduct from "./pages/editProduct/EditProduct";
 import Profile from "./pages/profile/Profile";
 import EditProfile from "./pages/profile/EditProfile";
 import Contact from "./pages/contact/Contact";
+import BuyerCart from "./components/buyerCart/BuyerCart";
+import BuyerProduct from "./components/buyerProduct/BuyerProduct";
 
 axios.defaults.withCredentials = true;
 
@@ -50,6 +52,26 @@ function App() {
             <Sidebar>
               <Layout>
                 <Dashboard />
+              </Layout>
+            </Sidebar>
+          }
+        />
+        <Route
+          path="/buyerProduct"
+          element={
+            <Sidebar>
+              <Layout>
+                <BuyerProduct />
+              </Layout>
+            </Sidebar>
+          }
+        />
+        <Route
+          path="/cart"
+          element={
+            <Sidebar>
+              <Layout>
+                <BuyerCart />
               </Layout>
             </Sidebar>
           }

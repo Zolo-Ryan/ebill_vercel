@@ -1,0 +1,13 @@
+These two pages are need to be made as well
+
+frontend/src/components:
+    buyerCart
+    buyerProduct
+
+buyerCart Requirements:
+1. A cart like page where all the user items will be displayed to be buyed together. (Just like amazon and flipkart have)
+2. Only frontend is required. Backend will be implemented later
+
+buyerProduct Requirements:
+1. A page where user can browse through all the available items in the inventory. The inventory items will be added by the admin(seller. We only have one seller). The buyer can only see the items, select quantity and add it into cart.
+2. Only frontend is required. Backend will be implemented later

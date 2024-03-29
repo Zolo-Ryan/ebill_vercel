@@ -11,7 +11,7 @@ const menu = [
   {
     title: "Products(user)",
     icon: <FaTh />,
-    path: "/products",
+    path: "/buyerProduct",
     role: ["USER"]
   },
   {
