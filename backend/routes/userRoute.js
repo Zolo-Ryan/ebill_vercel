@@ -10,8 +10,8 @@ const {
   changePassword,
   forgotPassword,
   resetPassword,
-} = require("../controllers/userController");
-const {protect} = require("../middleware/authMiddleware");
+} = require("../controllers/userController.js");
+const {protect} = require("../middleware/authMiddleware.js");
 
 router.post("/register", registerUser);
 router.post("/login", loginUser);

@@ -1,10 +1,10 @@
 const asyncHandler = require("express-async-handler");
-const User = require("../models/userModel");
+const User = require("../models/userModel.js");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-const Token = require("../models/tokenModel");
+const Token = require("../models/tokenModel.js");
 const crypto = require("crypto");
-const sendEmail = require("../utils/sendEmail");
+const sendEmail = require("../utils/sendEmail.js");
 const dotenv = require("dotenv");
 dotenv.config();
 // Generate Token
