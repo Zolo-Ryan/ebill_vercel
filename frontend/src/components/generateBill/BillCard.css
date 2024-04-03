@@ -8,21 +8,21 @@
     border-collapse: collapse;
   }
   
-  th,
-  td {
+  .head-th,
+  .head-td {
     padding: 12px;
     border-bottom: 1px solid #ddd;
+    font-size: 1.7rem;
   }
   
-  th {
-    background-color: #8a2c2c;
+  .head-th {
     text-align: left;
     font-weight: bold;
+    font-size: 1.9rem;
   }
   
   .total-bill {
     margin-top: 10px;
-    font-size: 1.6rem;
-    font-weight: bold;
+    font-size: 2rem;
   }
   

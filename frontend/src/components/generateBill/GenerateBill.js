@@ -1,28 +1,37 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import html2canvas from 'html2canvas';
 import { useDispatch, useSelector } from "react-redux";
 import useRedirectLoggedOutUser from "../../customHook/useRedirectLoggedOutUser";
 import { selectIsLoggedIn } from "../../redux/features/auth/authSlice";
 import {
-  getProduct,
   getProducts,
-  selectIsLoading,
-  selectProduct,
   updateProduct,
 } from "../../redux/features/product/productSlice";
-
 import Card from "./Card";
 import "./GenerateBill.css";
-import Search from "../search/Search";
 import productService from "../../redux/features/product/productService";
 import BillCard from "./BillCard";
 import { useNavigate } from "react-router-dom";
 
 const GenerateBill = () => {
   useRedirectLoggedOutUser("/login");
-  const dispatch = useDispatch();
+  const componentRef = useRef(null);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [quantities, setQuantities] = useState({});
   const [bill, setBill] = useState(false);
+  
+  const handleDownload = () => {
+    html2canvas(componentRef.current).then((canvas) => {
+      const dataUrl = canvas.toDataURL();
+      const link = document.createElement('a');
+      link.href = dataUrl;
+      link.download = 'ebill.png'; 
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    });
+  };
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const { products, isLoading, isError, message } = useSelector(
@@ -46,8 +55,8 @@ const GenerateBill = () => {
     }));
   };
   const confirm = async (e) => {
+    handleDownload();
     e.preventDefault();
-    console.log("hi front");
     for(const key in quantities){
       const id = key;
       const quantity = quantities[key];
@@ -62,8 +71,9 @@ const GenerateBill = () => {
       console.log(formData)
       await dispatch(updateProduct({id,formData}));
       await dispatch(getProducts());
-      setBill(false);
     }
+    setBill(false);
+    navigate("/generatebill");
   }
 
   const GenBill = async (e) => {
@@ -93,7 +103,7 @@ const GenerateBill = () => {
           </div>
         </form>
       )}
-      {bill && <BillCard quantities={quantities} confirm={confirm} />}
+      {bill && <BillCard componentRef={componentRef} handleDownload={handleDownload} quantities={quantities} confirm={confirm} />}
     </div>
   );
 };

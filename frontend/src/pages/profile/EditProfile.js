@@ -55,9 +55,9 @@ const EditProfile = () => {
       ) {
         // upload not working properly
         const image = new FormData();
-        image["file"] =  profileImage;
-        image["cloudName"] = "dnbrffz3y";
-        image["uploadPreset"] = "ibm2uyqa";
+        image.append("file", profileImage);
+        image.append("cloud_name", "dnbrffz3y");
+        image.append("upload_preset", "ibm2uyqa");
         console.log("This is formdata",image);
         // First save image to cloudinary
         await fetch(

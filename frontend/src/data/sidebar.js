@@ -24,7 +24,7 @@ const menu = [
     title: "Cart",
     icon: <FaTh />,
     path: "/cart",
-    role: ["USER"],
+    role: ["USER,ADMIN"],
   },
   {
     title: "Add Product",
