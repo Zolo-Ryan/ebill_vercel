@@ -40,7 +40,7 @@ const EditProfile = () => {
     setProfileImage(e.target.files[0]);
   };
 
-  const saveProfile = async (e) => {
+  const saveProfile = async (e) => {   
     e.preventDefault();
     setIsLoading(true);
     try {
@@ -53,18 +53,20 @@ const EditProfile = () => {
           profileImage.type === "image/jpg" ||
           profileImage.type === "image/png")
       ) {
-        // change THIS SHIT
+        // upload not working properly
         const image = new FormData();
-        image.append("file", profileImage);
-        image.append("cloud_name", "zinotrust");
-        image.append("upload_preset", "wk66xdkq");
+        image["file"] =  profileImage;
+        image["cloudName"] = "dnbrffz3y";
+        image["uploadPreset"] = "ibm2uyqa";
+        console.log("This is formdata",image);
         // First save image to cloudinary
-        const response = await fetch(
-          "https://api.cloudinary.com/v1_1/zinotrust/image/upload",
+        await fetch(
+          "https://api.cloudinary.com/v1_1/dnbrffz3y/upload",
           { method: "post", body: image }
-        );
-        const imgData = await response.json();
-        imageURL = imgData.url.toString();
+        ).then(res => res.json()).then(res =>{ 
+          console.log("this is res",res)
+          imageURL = res.url.toString();
+        })
       }
       const formData = {
         name: profile.name,

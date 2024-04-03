@@ -3,31 +3,37 @@ import { BiImageAdd } from "react-icons/bi";
 
 const menu = [
   {
-    title: "Dashboard(admin)",
+    title: "Dashboard",
     icon: <FaTh />,
     path: "/dashboard",
     role: ["ADMIN"],
   },
   {
-    title: "Products(user)",
+    title: "Products",
     icon: <FaTh />,
     path: "/buyerProduct",
     role: ["USER"]
   },
   {
-    title: "Cart(user)",
+    title: "Generate Bill",
+    icon: <FaTh />,
+    path: "/generatebill",
+    role: ["ADMIN"]
+  },
+  {
+    title: "Cart",
     icon: <FaTh />,
     path: "/cart",
     role: ["USER"],
   },
   {
-    title: "Add Product(admin)",
+    title: "Add Product",
     icon: <BiImageAdd />,
     path: "/add-product",
     role: ["ADMIN"],
   },
   {
-    title: "Account(both)",
+    title: "Account",
     icon: <FaRegChartBar />,
     childrens: [
       {
@@ -42,7 +48,7 @@ const menu = [
     role: ["USER","ADMIN"]
   },
   {
-    title: "Report Bug(both)",
+    title: "Report Bug",
     icon: <FaCommentAlt />,
     path: "/contact-us",
     role: ["USER","ADMIN"],

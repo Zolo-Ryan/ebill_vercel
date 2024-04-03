@@ -22,6 +22,7 @@ import EditProfile from "./pages/profile/EditProfile";
 import Contact from "./pages/contact/Contact";
 import BuyerCart from "./components/buyerCart/BuyerCart";
 import BuyerProduct from "./components/buyerProduct/BuyerProduct";
+import GenerateBill from "./components/generateBill/GenerateBill";
 
 axios.defaults.withCredentials = true;
 
@@ -62,6 +63,16 @@ function App() {
             <Sidebar>
               <Layout>
                 <BuyerProduct />
+              </Layout>
+            </Sidebar>
+          }
+        />
+        <Route
+          path="/generatebill"
+          element={
+            <Sidebar>
+              <Layout>
+                <GenerateBill />
               </Layout>
             </Sidebar>
           }

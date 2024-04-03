@@ -1,0 +1,28 @@
+.bill-summary {
+    margin-top: 20px;
+    color: black !important;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th,
+  td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  th {
+    background-color: #8a2c2c;
+    text-align: left;
+    font-weight: bold;
+  }
+  
+  .total-bill {
+    margin-top: 10px;
+    font-size: 1.6rem;
+    font-weight: bold;
+  }
+  
