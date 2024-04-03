@@ -1,2 +1,5 @@
-1. Bill Generation having duplicate values(BillCard.js)
-2. deduction in actual items
+CREATE PPT
+
+ADD NLP
+
+ADD PUPPETEER

@@ -15,10 +15,12 @@ import "./GenerateBill.css";
 import Search from "../search/Search";
 import productService from "../../redux/features/product/productService";
 import BillCard from "./BillCard";
+import { useNavigate } from "react-router-dom";
 
 const GenerateBill = () => {
   useRedirectLoggedOutUser("/login");
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [quantities, setQuantities] = useState({});
   const [bill, setBill] = useState(false);
 
@@ -29,7 +31,7 @@ const GenerateBill = () => {
 
   useEffect(() => {
     if (isLoggedIn === true) {
-      dispatch(getProducts());
+      dispatch(getProducts()); 
       //   console.log("Products", products);
     }
     if (isError) {
@@ -43,31 +45,36 @@ const GenerateBill = () => {
       [productId]: quantity,
     }));
   };
+  const confirm = async (e) => {
+    e.preventDefault();
+    console.log("hi front");
+    for(const key in quantities){
+      const id = key;
+      const quantity = quantities[key];
+      const product = await productService.getProduct(id);
+      const formData = new FormData();
+      formData.append("name", product?.name);
+      formData.append("category", product?.category);
+      formData.append("quantity", product?.quantity - quantity);
+      formData.append("price", product?.price);
+      formData.append("description", product?.description);
+      formData.append("image", product?.image);
+      console.log(formData)
+      await dispatch(updateProduct({id,formData}));
+      await dispatch(getProducts());
+      setBill(false);
+    }
+  }
 
   const GenBill = async (e) => {
     e.preventDefault();
-    // console.log("Quantities:", quantities);
-    // for (const key in quantities) {
-    //   const id = key;
-    //   const quantity = quantities[key];
-    //   const product = await productService.getProduct(id);
-
-    //   const formData = new FormData();
-    //   formData["name"] = product?.name;
-    //   formData["category"] = product?.category;
-    //   formData["quantity"] = quantity;
-    //   formData["price"] = product?.price;
-    //   formData["description"] = product?.description;
-    //   formData["image"] =  product?.image;
-
-    // }
     setBill(true);
   };
 
   return (
     <div>
       {!bill && (
-        <form onSubmit={GenBill}>
+        <form onSubmit={GenBill} method="patch">
           <div className="cards-container">
             {products.map((item, index) => {
               return (
@@ -86,7 +93,7 @@ const GenerateBill = () => {
           </div>
         </form>
       )}
-      {bill && <BillCard quantities={quantities} />}
+      {bill && <BillCard quantities={quantities} confirm={confirm} />}
     </div>
   );
 };
