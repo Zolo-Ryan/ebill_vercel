@@ -1,8 +1,10 @@
 import React from "react";
-import { RiProductHuntLine } from "react-icons/ri";
+
 import { Link } from "react-router-dom";
 import "./Home.css";
-import heroImg from "../../assets/inv-img.png";
+import heroImg1 from "../../assets/Scripting img1.jpg";
+import heroImg2 from "../../assets/Scripting img2.jpg";
+import Logo from "../../assets/Logo.png"
 import { ShowOnLogin, ShowOnLogout } from "../../components/protect/HiddenLink";
 
 const Home = () => {
@@ -10,7 +12,10 @@ const Home = () => {
     <div className="home">
       <nav className="container --flex-between ">
         <div className="logo">
-          <RiProductHuntLine size={35} />
+          <img src={Logo} alt="" />
+        </div>
+        <div className="title">
+          <h1>E-bill Management System</h1>
         </div>
 
         <ul className="home-links">
@@ -35,13 +40,13 @@ const Home = () => {
           </ShowOnLogin>
         </ul>
       </nav>
+     
       {/* HERO SECTION */}
       <section className="container hero">
         <div className="hero-text">
-          <h2>Inventory {"&"} Stock Management Solution</h2>
+          <h2>"Simplify Your Shop's Billing Process"</h2>
           <p>
-            Inventory system to control and manage proucts in the warehouse in
-            real timeand integrated to make it easier to develop your business.
+          Effortlessly manage your shop's billing processes with our intuitive eBill Management System. Streamline transactions, track inventory, and enhance customer satisfaction with ease.
           </p>
           <div className="hero-buttons">
             <button className="--btn --btn-secondary">
@@ -56,7 +61,8 @@ const Home = () => {
         </div>
 
         <div className="hero-image">
-          <img src={heroImg} alt="Inventory" />
+          <img src={heroImg1} alt="Inventory" className="image img1" />
+          <img src={heroImg2} alt="Inventory" className="image img2"/>
         </div>
       </section>
     </div>
