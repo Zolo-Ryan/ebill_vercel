@@ -1,3 +1,7 @@
-CREATE PPT
-
 ADD NLP
+
+Upload wala part shi krna h, server p load pdta h uski wjh se
+
+Add product krte waqt agar koi field khali ho toh woh page badal jata h jisse dubara bharna pdta h form
+
+dollar ki jagah rupees krna h
