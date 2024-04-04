@@ -6,3 +6,11 @@
     padding: 20px;
     box-sizing: border-box;
   }
+  .username-parent{
+    font-size: 1.8rem;
+    color: black;
+  }
+  .username-in{
+    padding: 2px;
+    outline: lightblue;
+  }
