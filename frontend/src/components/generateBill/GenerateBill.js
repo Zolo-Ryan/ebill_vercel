@@ -20,6 +20,7 @@ const GenerateBill = () => {
   const dispatch = useDispatch();
   const [quantities, setQuantities] = useState({});
   const [bill, setBill] = useState(false);
+  const [username,setUsername] = useState("");
   
   const handleDownload = () => {
     html2canvas(componentRef.current).then((canvas) => {
@@ -96,6 +97,10 @@ const GenerateBill = () => {
               );
             })}
           </div>
+          <div className="user-name">
+            <label htmlFor="username" className="username-parent">Name: </label>
+            <input type="text" className="username-in" name="username" id="username" value={username} onChange={e => setUsername(e.target.value)} />
+          </div>
           <div className="--my">
             <button type="submit" className="--btn --btn-primary">
               Generate Bill
@@ -103,7 +108,7 @@ const GenerateBill = () => {
           </div>
         </form>
       )}
-      {bill && <BillCard componentRef={componentRef} handleDownload={handleDownload} quantities={quantities} confirm={confirm} />}
+      {bill && <BillCard componentRef={componentRef} handleDownload={handleDownload} quantities={quantities} confirm={confirm} username={username} />}
     </div>
   );
 };

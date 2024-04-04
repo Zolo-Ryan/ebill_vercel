@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import productService from "../../redux/features/product/productService";
 import "./BillCard.css";
 
-const BillCard = ({ componentRef, quantities, confirm, handleDownload }) => {
+const BillCard = ({ componentRef, quantities, confirm, handleDownload,username }) => {
   const [totalCost, setTotalCost] = useState(0);
   const [products, setProducts] = useState([]);
   const [extra, setExtra] = useState([]);
+  const [date,setDate] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,6 +20,8 @@ const BillCard = ({ componentRef, quantities, confirm, handleDownload }) => {
         setTotalCost(prev => prev + product.price * modProduct.quantity);
         // console.log(totalCost);
       }
+      console.log(new Date());
+      setDate(new Date().toDateString());
     };
     fetchData();
     return () => {
@@ -52,6 +55,12 @@ const BillCard = ({ componentRef, quantities, confirm, handleDownload }) => {
           </table>
           <div className="total-bill">
             <strong>Total Bill:</strong> Rs.{totalCost}/-
+          </div>
+          <div className="username">
+              Name: {username||"Anonymous"}
+          </div>
+          <div className="date">
+            {date}
           </div>
         </div>
 
